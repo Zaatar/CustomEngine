@@ -1,8 +1,15 @@
 #pragma once
+#include "Ball.h"
 #include "Renderer.h"
 #include "Timer.h"
 #include "Vector2.h"
 #include "Window.h"
+
+#include <algorithm>
+#include <vector>
+
+using std::for_each;
+using std::vector;
 
 class Game
 {
@@ -26,19 +33,23 @@ private:
 	Game() : 
 		isRunning(true), 
 		ballPos({ 100, 100 }), 
-		ballVelocity({ 500, 500 }), 
-		paddlePos({ 50, 100 }), 
+		genericBallVelocity({ 500, 500 }), 
+		firstPaddlePos({ 50, 100 }), 
 		paddleVelocity({ 0, 450 }), 
-		paddleDirection(0), 
+		firstPaddleDirection(0), 
+		secondPaddlePos({992, 100}),
+		secondPaddleDirection(0),
 		wallThickness(10), 
 		topWall(Rectangle()),
-		bottomWall(Rectangle()), 
-		rightWall(Rectangle())
+		bottomWall(Rectangle()),
+		ballsVector()
 	{}
 	
 	void processInput();
 	void update(float dt);
 	void render();
+
+	void ballMovement(Ball ball);
 
 	Window window;
 	bool isRunning;
@@ -46,16 +57,24 @@ private:
 
 	Rectangle topWall;
 	Rectangle bottomWall;
-	Rectangle rightWall;
 	const float wallThickness = 10;
 
+	std::vector<Ball> ballsVector;
+	int ballCount = 1;
+
 	Vector2 ballPos;
-	Vector2 ballVelocity;
+	Vector2 genericBallVelocity;
 	const float ballSize = 10;
 
-	Vector2 paddlePos;
+	Vector2 firstPaddlePos;
+	float firstPaddleDirection;
+
+	Vector2 secondPaddlePos;
+	float secondPaddleDirection;
+
 	Vector2 paddleVelocity;
 	const float paddleWidth = 10;
 	const float paddleHeight = 64;
-	float paddleDirection;
+
+	float dt = 0.0f;
 };

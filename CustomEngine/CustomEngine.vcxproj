@@ -150,6 +150,7 @@
     <ClCompile Include="src\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Ball.h" />
     <ClInclude Include="src\Game.h" />
     <ClInclude Include="src\Log.h" />
     <ClInclude Include="src\Rectangle.h" />

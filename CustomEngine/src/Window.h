@@ -1,8 +1,8 @@
 #pragma once
 #include <SDL2/SDL.h>
 
-const int WINDOW_WIDTH = 1920;
-const int WINDOW_HEIGHT = 1080;
+const int WINDOW_WIDTH = 1042;
+const int WINDOW_HEIGHT = 768;
 
 class Window
 {
