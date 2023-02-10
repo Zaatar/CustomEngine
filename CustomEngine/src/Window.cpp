@@ -1,7 +1,7 @@
 #include "Window.h"
 #include "Log.h"
 
-Window::Window() : SDLWindow(nullptr), width(WINDOW_WIDTH), height(WINDOW_HEIGHT) {}
+Window::Window() : window(nullptr), width(WINDOW_WIDTH), height(WINDOW_HEIGHT) {}
 
 bool Window::initialize()
 {
@@ -11,9 +11,9 @@ bool Window::initialize()
 		Log::error(LogCategory::Video, "Unable to initialize SDL");
 		return false;
 	}
-	SDLWindow = SDL_CreateWindow("Wall Pong", 100, 100, width, height, 0); // 0 is a flag we will use later
+	window = SDL_CreateWindow("Wall Pong", 100, 100, width, height, 0); // 0 is a flag we will use later
 
-	if (!SDLWindow)
+	if (!window)
 	{
 		Log::error(LogCategory::System, "Failed to create window");
 		return false;
@@ -23,5 +23,5 @@ bool Window::initialize()
 
 void Window::close()
 {
-	SDL_DestroyWindow(SDLWindow);
+	SDL_DestroyWindow(window);
 }

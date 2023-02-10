@@ -4,6 +4,8 @@ struct Vector2
 	Vector2() : x(0), y(0) {}
 	Vector2(float xP, float yP) : x(xP), y(yP) {}
 
+	static const Vector2 zero;
+
 	float x, y;
 
 	Vector2& operator+=(const Vector2& right)

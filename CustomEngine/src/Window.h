@@ -14,11 +14,11 @@ public:
 	bool initialize();
 	void close();
 
-	SDL_Window* getSDLWindow() const { return SDLWindow; }
+	SDL_Window* getSDLWindow() const { return window; }
 	int getWidth() const { return width; }
 	int getHeight() const { return height; }
 
 private:
-	SDL_Window* SDLWindow;
+	SDL_Window* window;
 	int width, height;
 };
