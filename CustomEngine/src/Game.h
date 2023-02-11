@@ -3,6 +3,7 @@
 #include "Assets.h"
 #include "Ball.h"
 #include "Renderer.h"
+#include "SpriteComponent.h"
 #include "Timer.h"
 #include "Vector2.h"
 #include "Window.h"
@@ -33,6 +34,8 @@ public:
 
 	void addActor(Actor* actor);
 	void removeActor(Actor* actor);
+
+	Renderer& getRenderer() { return renderer; }
 
 private:
 	Game() : 

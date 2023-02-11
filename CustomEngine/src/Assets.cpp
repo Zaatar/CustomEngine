@@ -1,4 +1,5 @@
 #include "Assets.h"
+#include "Log.h"
 
 #include <sstream>
 

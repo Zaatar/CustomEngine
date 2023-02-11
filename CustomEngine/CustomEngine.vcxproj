@@ -149,7 +149,9 @@
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\Log.cpp" />
     <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\Rectangle.cpp" />
     <ClCompile Include="src\Renderer.cpp" />
+    <ClCompile Include="src\SpriteComponent.cpp" />
     <ClCompile Include="src\Texture.cpp" />
     <ClCompile Include="src\Timer.cpp" />
     <ClCompile Include="src\Vector2.cpp" />
@@ -162,8 +164,10 @@
     <ClInclude Include="src\Component.h" />
     <ClInclude Include="src\Game.h" />
     <ClInclude Include="src\Log.h" />
+    <ClInclude Include="src\Maths.h" />
     <ClInclude Include="src\Rectangle.h" />
     <ClInclude Include="src\Renderer.h" />
+    <ClInclude Include="src\SpriteComponent.h" />
     <ClInclude Include="src\Texture.h" />
     <ClInclude Include="src\Timer.h" />
     <ClInclude Include="src\Vector2.h" />
