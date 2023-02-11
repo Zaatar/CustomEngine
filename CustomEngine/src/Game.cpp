@@ -13,11 +13,10 @@ bool Game::initialize()
 
 void Game::load()
 {
-	Assets::loadTexture(renderer, 
-		"C:\\Repository\\C++\\CustomEngine\\CustomEngine\\Res\\Ship01.png", "ship01");
-	auto actor = new Actor();
-	auto sprite = new SpriteComponent(actor, Assets::getTexture("ship01"));
-	actor->setPosition(Vector2{ 100,100 });
+	Assets::loadTexture(renderer, "C:\\Repository\\C++\\CustomEngine\\CustomEngine\\src\\Res\\Ship01.png", 
+		"ship01");
+
+	Log::info("Hello World!");
 }
 
 void Game::loop()
@@ -114,7 +113,7 @@ void Game::update(float dt)
 void Game::render() 
 {
 	renderer.beginDraw();
-	renderer.drawSprites();
+
 	renderer.endDraw();
 }
 

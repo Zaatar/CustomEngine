@@ -1,11 +1,7 @@
 #pragma once
 
-#include "Actor.h"
 #include "Log.h"
-#include "Maths.h"
-#include "SpriteComponent.h"
 #include "Rectangle.h"
-#include "Texture.h"
 #include "Window.h"
 
 
@@ -14,35 +10,18 @@
 class Renderer
 {
 public:
-	enum class Flip
-	{
-		None = SDL_FLIP_NONE,
-		Horizontal = SDL_FLIP_HORIZONTAL,
-		Vertical = SDL_FLIP_VERTICAL
-	};
-
 	Renderer();
-	~Renderer();
 	Renderer(const Renderer&) = delete;
 	Renderer& operator=(const Renderer&) = delete;
 
 	bool initialize(Window& window);
-
 	void beginDraw();
 	void drawRect(Rectangle& rect);
 	void endDraw();
-
-	void drawRect(const Rectangle& rect) const;
-	void addSprite(class SpriteComponent* sprite);
-	void removeSprite(class SpriteComponent* sprite);
-	void drawSprites();
-	void drawSprite(const Actor& actor, 
-		const class Texture& texture, Rectangle srcRect, Vector2 origin, Flip flip) const;
-
-	SDL_Renderer* toSDLRenderer() const { return SDLRenderer; }
 	void close();
+
+	inline SDL_Renderer* toSDLRenderer() const { return SDLRenderer; }
 
 private:
 	SDL_Renderer* SDLRenderer = nullptr;
-	std::vector<SpriteComponent*> sprites;
 };
