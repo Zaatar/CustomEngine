@@ -6,7 +6,8 @@ std::map<std::string, Texture> Assets::textures;
 
 Texture Assets::loadTexture(Renderer& renderer, const string& filename, const string& name)
 {
-	textures.emplace(name, loadTextureFromFile(renderer, filename.c_str()));
+	// textures.emplace(name, loadTextureFromFile(renderer, filename.c_str()));
+	textures[name] = loadTextureFromFile(renderer, filename.c_str());
 	return textures[name];
 }
 
@@ -15,7 +16,7 @@ Texture& Assets::getTexture(const string& name)
 	if (textures.find(name) == end(textures))
 	{
 		std::ostringstream loadError;
-		loadError << "Texture " << name << "does not exist in assets manager";
+		loadError << "Texture " << name << " does not exist in assets manager";
 		Log::error(LogCategory::Application, loadError.str());
 	}
 	return textures[name];

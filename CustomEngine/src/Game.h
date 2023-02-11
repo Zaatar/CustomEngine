@@ -1,7 +1,6 @@
 #pragma once
 #include "Actor.h"
 #include "Assets.h"
-#include "Ball.h"
 #include "Renderer.h"
 #include "Timer.h"
 #include "Vector2.h"
@@ -33,6 +32,8 @@ public:
 
 	void addActor(Actor* actor);
 	void removeActor(Actor* actor);
+
+	Renderer& getRenderer() { return renderer; }
 
 private:
 	Game() : 
