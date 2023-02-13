@@ -1,10 +1,6 @@
 #pragma once
-#include "Actor.h"
-#include "Assets.h"
 #include "Ball.h"
 #include "Renderer.h"
-#include "SpriteComponent.h"
-#include "Timer.h"
 #include "Vector2.h"
 #include "Window.h"
 

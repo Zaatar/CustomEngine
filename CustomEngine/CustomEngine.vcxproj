@@ -144,7 +144,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Actor.cpp" />
+    <ClCompile Include="src\AnimSpriteComponent.cpp" />
     <ClCompile Include="src\Assets.cpp" />
+    <ClCompile Include="src\BackgroundSpriteComponent.cpp" />
     <ClCompile Include="src\Component.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\Log.cpp" />
@@ -160,7 +162,9 @@
   <ItemGroup>
     <ClInclude Include="Ball.h" />
     <ClInclude Include="src\Actor.h" />
+    <ClInclude Include="src\AnimSpriteComponent.h" />
     <ClInclude Include="src\Assets.h" />
+    <ClInclude Include="src\BackgroundSpriteComponent.h" />
     <ClInclude Include="src\Component.h" />
     <ClInclude Include="src\Game.h" />
     <ClInclude Include="src\Log.h" />
