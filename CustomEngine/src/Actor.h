@@ -28,6 +28,7 @@ public:
 	const float getRotation() const { return rotation; }
 	Vector2 getForward() const;
 
+	void setState(ActorState stateP);
 	void setPosition(Vector2 positionP);
 	void setScale(float scaleP);
 	void setRotation(float rotationP);

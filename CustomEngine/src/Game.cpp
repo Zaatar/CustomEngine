@@ -32,6 +32,9 @@ void Game::load()
 		"C:\\Repository\\C++\\CustomEngine\\CustomEngine\\src\\Res\\Farback02.png",
 		"Farback02");
 	Assets::loadTexture(renderer,
+		"C:\\Repository\\C++\\CustomEngine\\CustomEngine\\src\\Res\\Laser.png",
+		"Laser");
+	Assets::loadTexture(renderer,
 		"C:\\Repository\\C++\\CustomEngine\\CustomEngine\\src\\Res\\Ship.png",
 		"Ship");
 	Assets::loadTexture(renderer, 
@@ -221,5 +224,24 @@ void Game::removeActor(Actor* actor)
 	{
 		std::iter_swap(iter, end(actors) - 1);
 		actors.pop_back();
+	}
+}
+
+vector<Asteroid*>& Game::getAsteroids()
+{
+	return asteroids;
+}
+
+void Game::addAsteroid(Asteroid* asteroid)
+{
+	asteroids.emplace_back(asteroid);
+}
+
+void Game::removeAsteroid(Asteroid* asteroid)
+{
+	auto iter = std::find(begin(asteroids), end(asteroids), asteroid);
+	if (iter != asteroids.end())
+	{
+		asteroids.erase(iter);
 	}
 }

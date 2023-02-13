@@ -1,5 +1,5 @@
 #pragma once
-#include "Ball.h"
+#include "Asteroid.h"
 #include "Renderer.h"
 #include "Vector2.h"
 #include "Window.h"
@@ -33,6 +33,11 @@ public:
 
 	Renderer& getRenderer() { return renderer; }
 
+	// Game specific
+	vector<Asteroid*>& getAsteroids();
+	void addAsteroid(Asteroid* asteroid);
+	void removeAsteroid(Asteroid* asteroid);
+
 private:
 	Game() : 
 		isRunning(true), 
@@ -50,4 +55,7 @@ private:
 	bool isUpdatingActors;
 	vector<Actor*> actors;
 	vector<Actor*> pendingActors;
+
+	// Game specific
+	vector<Asteroid*> asteroids;
 };

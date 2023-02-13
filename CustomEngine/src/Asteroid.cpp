@@ -1,5 +1,6 @@
 #include "Assets.h"
 #include "Asteroid.h"
+#include "Game.h"
 #include "Maths.h"
 #include "MoveComponent.h"
 #include "Random.h"
@@ -15,4 +16,14 @@ Asteroid::Asteroid() : Actor()
 	SpriteComponent* sc = new SpriteComponent(this, Assets::getTexture("Asteroid"));
 	MoveComponent* mc = new MoveComponent(this);
 	mc->setForwardSpeed(150.0f);
+
+	collision = new CircleCollisionComponent(this);
+	collision->setRadius(40.0f);
+
+	getGame().addAsteroid(this);
+}
+
+Asteroid::~Asteroid()
+{
+	getGame().removeAsteroid(this);
 }

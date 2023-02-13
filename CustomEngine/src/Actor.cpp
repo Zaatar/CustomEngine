@@ -32,6 +32,11 @@ Vector2 Actor::getForward() const
 	// Sin is inverted because in 2D games the positive axis is inverted toward the bottom
 }
 
+void Actor::setState(ActorState stateP)
+{
+	state = stateP;
+}
+
 void Actor::setPosition(Vector2 positionP)
 {
 	position = positionP;

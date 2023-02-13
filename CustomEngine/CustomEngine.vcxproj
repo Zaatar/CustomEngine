@@ -148,9 +148,11 @@
     <ClCompile Include="src\Assets.cpp" />
     <ClCompile Include="src\Asteroid.cpp" />
     <ClCompile Include="src\BackgroundSpriteComponent.cpp" />
+    <ClCompile Include="src\CircleCollisionComponent.cpp" />
     <ClCompile Include="src\Component.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\InputComponent.cpp" />
+    <ClCompile Include="src\Laser.cpp" />
     <ClCompile Include="src\Log.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\MoveComponent.cpp" />
@@ -171,9 +173,11 @@
     <ClInclude Include="src\Assets.h" />
     <ClInclude Include="src\Asteroid.h" />
     <ClInclude Include="src\BackgroundSpriteComponent.h" />
+    <ClInclude Include="src\CircleCollisionComponent.h" />
     <ClInclude Include="src\Component.h" />
     <ClInclude Include="src\Game.h" />
     <ClInclude Include="src\InputComponent.h" />
+    <ClInclude Include="src\Laser.h" />
     <ClInclude Include="src\Log.h" />
     <ClInclude Include="src\Maths.h" />
     <ClInclude Include="src\MoveComponent.h" />

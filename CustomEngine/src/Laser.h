@@ -2,14 +2,14 @@
 #include "Actor.h"
 #include "CircleCollisionComponent.h"
 
-class Asteroid : public Actor
+class Laser : public Actor
 {
 public:
-	Asteroid();
-	~Asteroid();
+	Laser();
 
-	CircleCollisionComponent& getCollision() { return *collision; }
+	void updateActor(float dt) override;
 
 private:
 	CircleCollisionComponent* collision;
+	float deathTimer;
 };
