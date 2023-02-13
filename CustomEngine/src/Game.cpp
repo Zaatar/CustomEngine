@@ -37,10 +37,6 @@ void Game::load()
 	Assets::loadTexture(renderer, 
 		"C:\\Repository\\C++\\CustomEngine\\CustomEngine\\src\\Res\\Stars.png", "Stars");
 
-	//auto actor = new Actor();
-	//SpriteComponent* sprite = new SpriteComponent(actor, Assets::getTexture("Ship01"));
-	//actor->setPosition(Vector2{ 100, 100 });
-
 	// Animated sprite
 	vector<Texture*> animTextures{
 		&Assets::getTexture("Ship01"),
