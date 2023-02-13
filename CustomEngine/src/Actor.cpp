@@ -1,6 +1,7 @@
 #include "Actor.h"
 #include "Game.h"
 #include "Component.h"
+#include "Maths.h"
 
 #include <algorithm>
 
@@ -23,6 +24,12 @@ Actor::~Actor()
 	{
 		delete components.back();
 	}
+}
+
+Vector2 Actor::getForward() const
+{
+	return Vector2(Maths::cos(rotation), -Maths::sin(rotation));
+	// Sin is inverted because in 2D games the positive axis is inverted toward the bottom
 }
 
 void Actor::setPosition(Vector2 positionP)

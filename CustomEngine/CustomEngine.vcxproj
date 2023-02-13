@@ -146,11 +146,13 @@
     <ClCompile Include="src\Actor.cpp" />
     <ClCompile Include="src\AnimSpriteComponent.cpp" />
     <ClCompile Include="src\Assets.cpp" />
+    <ClCompile Include="src\Asteroid.cpp" />
     <ClCompile Include="src\BackgroundSpriteComponent.cpp" />
     <ClCompile Include="src\Component.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\Log.cpp" />
     <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\MoveComponent.cpp" />
     <ClCompile Include="src\Random.cpp" />
     <ClCompile Include="src\Rectangle.cpp" />
     <ClCompile Include="src\Renderer.cpp" />
@@ -165,11 +167,13 @@
     <ClInclude Include="src\Actor.h" />
     <ClInclude Include="src\AnimSpriteComponent.h" />
     <ClInclude Include="src\Assets.h" />
+    <ClInclude Include="src\Asteroid.h" />
     <ClInclude Include="src\BackgroundSpriteComponent.h" />
     <ClInclude Include="src\Component.h" />
     <ClInclude Include="src\Game.h" />
     <ClInclude Include="src\Log.h" />
     <ClInclude Include="src\Maths.h" />
+    <ClInclude Include="src\MoveComponent.h" />
     <ClInclude Include="src\Random.h" />
     <ClInclude Include="src\Rectangle.h" />
     <ClInclude Include="src\Renderer.h" />

@@ -1,5 +1,6 @@
 #include "Actor.h"
 #include "Assets.h"
+#include "Asteroid.h"
 #include "AnimSpriteComponent.h"
 #include "BackgroundSpriteComponent.h"
 #include "Game.h"
@@ -36,6 +37,9 @@ void Game::load()
 		"Farback02");
 	Assets::loadTexture(renderer, 
 		"C:\\Repository\\C++\\CustomEngine\\CustomEngine\\src\\Res\\Stars.png", "Stars");
+	Assets::loadTexture(renderer,
+		"C:\\Repository\\C++\\CustomEngine\\CustomEngine\\src\\Res\\Asteroid.png", 
+		"Asteroid");
 
 	// Animated sprite
 	vector<Texture*> animTextures{
@@ -71,6 +75,12 @@ void Game::load()
 	BackgroundSpriteComponent* bgSpritesClose = 
 		new BackgroundSpriteComponent(bgClose, bgTexsClose, 50);
 	bgSpritesClose->setScrollSpeed(-200.0f);
+
+	const int asteroidNumber = 20;
+	for (int i = 0; i < asteroidNumber; ++i)
+	{
+		new Asteroid();
+	}
 }
 
 void Game::loop()
