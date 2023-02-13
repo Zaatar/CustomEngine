@@ -12,5 +12,6 @@ Component::~Component()
 	owner.removeComponent(this);
 }
 
-void Component::update(float dt)
-{}
+void Component::update(float dt) {}
+
+void Component::processInput(const Uint8* keyState) {}

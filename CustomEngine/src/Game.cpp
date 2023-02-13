@@ -5,6 +5,7 @@
 #include "BackgroundSpriteComponent.h"
 #include "Game.h"
 #include "Log.h"
+#include "Ship.h"
 #include "SpriteComponent.h"
 #include "Timer.h"
 
@@ -21,6 +22,18 @@ bool Game::initialize()
 
 void Game::load()
 {
+	Assets::loadTexture(renderer,
+		"C:\\Repository\\C++\\CustomEngine\\CustomEngine\\src\\Res\\Asteroid.png",
+		"Asteroid");
+	Assets::loadTexture(renderer,
+		"C:\\Repository\\C++\\CustomEngine\\CustomEngine\\src\\Res\\Farback01.png",
+		"Farback01");
+	Assets::loadTexture(renderer,
+		"C:\\Repository\\C++\\CustomEngine\\CustomEngine\\src\\Res\\Farback02.png",
+		"Farback02");
+	Assets::loadTexture(renderer,
+		"C:\\Repository\\C++\\CustomEngine\\CustomEngine\\src\\Res\\Ship.png",
+		"Ship");
 	Assets::loadTexture(renderer, 
 		"C:\\Repository\\C++\\CustomEngine\\CustomEngine\\src\\Res\\Ship01.png", "Ship01");
 	Assets::loadTexture(renderer, 
@@ -30,16 +43,8 @@ void Game::load()
 	Assets::loadTexture(renderer, 
 		"C:\\Repository\\C++\\CustomEngine\\CustomEngine\\src\\Res\\Ship04.png", "Ship04");
 	Assets::loadTexture(renderer, 
-		"C:\\Repository\\C++\\CustomEngine\\CustomEngine\\src\\Res\\Farback01.png", 
-		"Farback01");
-	Assets::loadTexture(renderer, 
-		"C:\\Repository\\C++\\CustomEngine\\CustomEngine\\src\\Res\\Farback02.png",
-		"Farback02");
-	Assets::loadTexture(renderer, 
 		"C:\\Repository\\C++\\CustomEngine\\CustomEngine\\src\\Res\\Stars.png", "Stars");
-	Assets::loadTexture(renderer,
-		"C:\\Repository\\C++\\CustomEngine\\CustomEngine\\src\\Res\\Asteroid.png", 
-		"Asteroid");
+	
 
 	// Animated sprite
 	vector<Texture*> animTextures{
@@ -49,10 +54,9 @@ void Game::load()
 		&Assets::getTexture("Ship04")
 	};
 
-	Actor* ship = new Actor();
-	AnimSpriteComponent* animatedSprite = 
-		new AnimSpriteComponent(ship, animTextures);
-	ship->setPosition(Vector2{ 100, 300 });
+	// Controlled ship
+	Ship* ship = new Ship();
+	ship->setPosition(Vector2{ 100,300 });
 
 	// Background
 	// Create the "far back" background
@@ -138,6 +142,14 @@ void Game::processInput()
 	{
 		isRunning = false;
 	}
+
+	// Actor input
+	isUpdatingActors = true;
+	for (auto actor : actors)
+	{
+		actor->processInput(keyboardState);
+	}
+	isUpdatingActors = false;
 }
 
 void Game::update(float dt) 
