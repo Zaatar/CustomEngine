@@ -3,8 +3,6 @@
 #include <algorithm>
 #include <SDL2/SDL_timer.h>
 
-Timer::Timer() : frameStart(0), lastFrame(0), frameTime(0) {}
-
 unsigned int Timer::computeDeltaTime()
 {
 	frameStart = SDL_GetTicks();

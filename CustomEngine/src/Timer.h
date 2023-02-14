@@ -2,8 +2,13 @@
 class Timer
 {
 public:
-	Timer();
+	static Timer& instance()
+	{
+		static Timer instance;
+		return instance;
+	}
 	Timer(const Timer&) = delete;
+	Timer(Timer&&) = delete;
 	Timer& operator=(const Timer&) = delete;
 
 	// Compute delta time as the number of milliseconds since last frame
@@ -14,6 +19,7 @@ public:
 	void delayTime();
 
 private:
+	Timer() : frameStart(0), lastFrame(0), frameTime(0) {}
 	const static unsigned int FPS = 60;
 	const static unsigned int FRAME_DELAY = 1000 / FPS;
 	const unsigned int MAX_DT = 50;

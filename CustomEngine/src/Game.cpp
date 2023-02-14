@@ -92,15 +92,14 @@ void Game::load()
 
 void Game::loop()
 {
-	Timer timer;
 	float dt = 0;
 	while (isRunning)
 	{
-		dt = timer.computeDeltaTime() / 1000.0f;
+		dt = Timer::instance().computeDeltaTime() / 1000.0f;
 		processInput();
 		update(dt);
 		render();
-		timer.delayTime();
+		Timer::instance().delayTime();
 	}
 }
 

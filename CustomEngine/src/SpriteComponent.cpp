@@ -1,5 +1,7 @@
 #include "Actor.h"
 #include "Game.h"
+#include "Log.h"
+#include "Timer.h"
 #include "SpriteComponent.h"
 
 SpriteComponent::SpriteComponent(Actor* ownerP, Texture& textureP, int drawOrderP) :
@@ -7,7 +9,8 @@ SpriteComponent::SpriteComponent(Actor* ownerP, Texture& textureP, int drawOrder
 	texture(textureP),
 	drawOrder(drawOrderP),
 	texWidth(textureP.getWidth()),
-	texHeight(textureP.getHeight())
+	texHeight(textureP.getHeight()),
+	delayDraw(false)
 {
 	owner.getGame().getRenderer().addSprite(this);
 }
@@ -25,6 +28,22 @@ void SpriteComponent::setTexture(const Texture& textureP)
 
 void SpriteComponent::draw(Renderer& renderer)
 {
+	if (delayDraw)
+	{
+		delayCounter += Timer::instance().computeDeltaTime() / 1000.0f;
+		while (delayCounter < 0.01)
+		{
+			return;
+		}
+		Log::info("Delay Counter : " + std::to_string(delayCounter));
+		delayCounter = 0.0f;
+		delayDraw = false;
+	}
 	Vector2 origin{ texWidth / 2.0f, texHeight / 2.0f };
 	renderer.drawSprite(owner, texture, Rectangle::nullRect, origin, Renderer::Flip::None);
+}
+
+void SpriteComponent::setDelayDraw(bool delayDrawP)
+{
+	delayDraw = delayDrawP;
 }

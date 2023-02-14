@@ -21,7 +21,12 @@ public:
 	int getTexWidth() const { return texWidth; }
 	int getTexHeight() const { return texHeight; }
 
+	void setDelayDraw(bool delayDrawP);
+
 private:
 	Texture texture;
 	int drawOrder, texWidth, texHeight;
+	bool delayDraw = false;
+	float delayCounter = 0.0f;
+	float dt = 0.0f;
 };
