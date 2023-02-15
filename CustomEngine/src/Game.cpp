@@ -53,6 +53,12 @@ void Game::load()
 		"C://Repository//C++//CustomEngine//CustomEngine//src//Res//TileGreySelected.png",
 		"TileGreySelected");
 	Assets::loadTexture(renderer,
+		"C://Repository//C++//CustomEngine//CustomEngine//src//Res//TileRed.png",
+		"TileRed");
+	Assets::loadTexture(renderer,
+		"C://Repository//C++//CustomEngine//CustomEngine//src//Res//TileRedSelected.png",
+		"TileRedSelected");
+	Assets::loadTexture(renderer,
 		"C://Repository//C++//CustomEngine//CustomEngine//src//Res//TileTan.png",
 		"TileTan");
 	Assets::loadTexture(renderer,
@@ -100,6 +106,7 @@ void Game::close()
 
 void Game::processInput() 
 {
+	SDL_PumpEvents();
 	// SDL Event
 	SDL_Event event;
 	if (SDL_PollEvent(&event)) 
@@ -168,9 +175,12 @@ void Game::update(float dt)
 	Uint32 buttons = SDL_GetMouseState(x, y);
 	if (SDL_BUTTON(buttons) & SDL_BUTTON_LEFT)
 	{
+		Log::info("ProcessClick");
 		int xDref = *x;
 		int yDref = *y;
 		grid->processClick(xDref, yDref);
+		Log::info("ProcessClick X: " + xDref);
+		Log::info("ProcessClick Y: " + yDref);
 	}
 }
 

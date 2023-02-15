@@ -38,12 +38,15 @@ public:
 	vector<Asteroid*>& getAsteroids();
 	void addAsteroid(Asteroid* asteroid);
 	void removeAsteroid(Asteroid* asteroid);
+	class Grid& getGrid() { return *grid; }
+	std::vector<class Enemy*>& getEnemies() { return enemies; }
 
 private:
 	Game() : 
 		isRunning(true), 
 		isUpdatingActors(false),
-		grid(nullptr)
+		grid(nullptr),
+		nextEnemyTimer(0.0f)
 	{}
 	
 	void processInput();
@@ -61,4 +64,6 @@ private:
 	// Game specific
 	vector<Asteroid*> asteroids;
 	Grid* grid;
+	std::vector<class Enemy*> enemies;
+	float nextEnemyTimer;
 };
