@@ -151,6 +151,7 @@
     <ClCompile Include="src\CircleCollisionComponent.cpp" />
     <ClCompile Include="src\Component.cpp" />
     <ClCompile Include="src\Game.cpp" />
+    <ClCompile Include="src\Grid.cpp" />
     <ClCompile Include="src\InputComponent.cpp" />
     <ClCompile Include="src\Laser.cpp" />
     <ClCompile Include="src\Log.cpp" />
@@ -162,6 +163,7 @@
     <ClCompile Include="src\Ship.cpp" />
     <ClCompile Include="src\SpriteComponent.cpp" />
     <ClCompile Include="src\Texture.cpp" />
+    <ClCompile Include="src\Tile.cpp" />
     <ClCompile Include="src\Timer.cpp" />
     <ClCompile Include="src\Vector2.cpp" />
     <ClCompile Include="src\Window.cpp" />
@@ -176,6 +178,7 @@
     <ClInclude Include="src\CircleCollisionComponent.h" />
     <ClInclude Include="src\Component.h" />
     <ClInclude Include="src\Game.h" />
+    <ClInclude Include="src\Grid.h" />
     <ClInclude Include="src\InputComponent.h" />
     <ClInclude Include="src\Laser.h" />
     <ClInclude Include="src\Log.h" />
@@ -187,6 +190,7 @@
     <ClInclude Include="src\Ship.h" />
     <ClInclude Include="src\SpriteComponent.h" />
     <ClInclude Include="src\Texture.h" />
+    <ClInclude Include="src\Tile.h" />
     <ClInclude Include="src\Timer.h" />
     <ClInclude Include="src\Vector2.h" />
     <ClInclude Include="src\Window.h" />

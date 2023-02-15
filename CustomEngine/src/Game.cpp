@@ -23,71 +23,46 @@ bool Game::initialize()
 void Game::load()
 {
 	Assets::loadTexture(renderer,
-		"C:\\Repository\\C++\\CustomEngine\\CustomEngine\\src\\Res\\Asteroid.png",
-		"Asteroid");
+		"C://Repository//C++//CustomEngine//CustomEngine//src//Res//Airplane.png",
+		"Airplane");
 	Assets::loadTexture(renderer,
-		"C:\\Repository\\C++\\CustomEngine\\CustomEngine\\src\\Res\\Farback01.png",
-		"Farback01");
+		"C://Repository//C++//CustomEngine//CustomEngine//src//Res//Base.png",
+		"Base");
 	Assets::loadTexture(renderer,
-		"C:\\Repository\\C++\\CustomEngine\\CustomEngine\\src\\Res\\Farback02.png",
-		"Farback02");
+		"C://Repository//C++//CustomEngine//CustomEngine//src//Res//Missile.png",
+		"Missile");
 	Assets::loadTexture(renderer,
-		"C:\\Repository\\C++\\CustomEngine\\CustomEngine\\src\\Res\\Laser.png",
-		"Laser");
+		"C://Repository//C++//CustomEngine//CustomEngine//src//Res//Projectile.png",
+		"Projectile");
 	Assets::loadTexture(renderer,
-		"C:\\Repository\\C++\\CustomEngine\\CustomEngine\\src\\Res\\Ship.png",
-		"Ship");
-	Assets::loadTexture(renderer, 
-		"C:\\Repository\\C++\\CustomEngine\\CustomEngine\\src\\Res\\Ship01.png", "Ship01");
-	Assets::loadTexture(renderer, 
-		"C:\\Repository\\C++\\CustomEngine\\CustomEngine\\src\\Res\\Ship02.png", "Ship02");
-	Assets::loadTexture(renderer, 
-		"C:\\Repository\\C++\\CustomEngine\\CustomEngine\\src\\Res\\Ship03.png", "Ship03");
-	Assets::loadTexture(renderer, 
-		"C:\\Repository\\C++\\CustomEngine\\CustomEngine\\src\\Res\\Ship04.png", "Ship04");
-	Assets::loadTexture(renderer, 
-		"C:\\Repository\\C++\\CustomEngine\\CustomEngine\\src\\Res\\Stars.png", "Stars");
-	
+		"C://Repository//C++//CustomEngine//CustomEngine//src//Res//TileBrown.png",
+		"TileBrown");
+	Assets::loadTexture(renderer,
+		"C://Repository//C++//CustomEngine//CustomEngine//src//Res//TileBrownSelected.png",
+		"TileBrownSelected");
+	Assets::loadTexture(renderer,
+		"C://Repository//C++//CustomEngine//CustomEngine//src//Res//TileGreen.png",
+		"TileGreen");
+	Assets::loadTexture(renderer,
+		"C://Repository//C++//CustomEngine//CustomEngine//src//Res//TileGreenSelected.png",
+		"TileGreenSelected");
+	Assets::loadTexture(renderer,
+		"C://Repository//C++//CustomEngine//CustomEngine//src//Res//TileGrey.png",
+		"TileGrey");
+	Assets::loadTexture(renderer,
+		"C://Repository//C++//CustomEngine//CustomEngine//src//Res//TileGreySelected.png",
+		"TileGreySelected");
+	Assets::loadTexture(renderer,
+		"C://Repository//C++//CustomEngine//CustomEngine//src//Res//TileTan.png",
+		"TileTan");
+	Assets::loadTexture(renderer,
+		"C://Repository//C++//CustomEngine//CustomEngine//src//Res//TileTanSelected.png",
+		"TileTanSelected");
+	Assets::loadTexture(renderer,
+		"C://Repository//C++//CustomEngine//CustomEngine//src//Res//Tower.png",
+		"Tower");
 
-	// Animated sprite
-	vector<Texture*> animTextures{
-		&Assets::getTexture("Ship01"),
-		&Assets::getTexture("Ship02"),
-		&Assets::getTexture("Ship03"),
-		&Assets::getTexture("Ship04")
-	};
-
-	// Controlled ship
-	Ship* ship = new Ship();
-	ship->setPosition(Vector2{ 100,300 });
-
-	// Background
-	// Create the "far back" background
-	vector<Texture*> bgTexsFar{
-		&Assets::getTexture("Farback01"),
-		&Assets::getTexture("Farback02")
-	};
-
-	Actor* bgFar = new Actor();
-	BackgroundSpriteComponent* bgSpritesFar = 
-		new BackgroundSpriteComponent(bgFar, bgTexsFar);
-	bgSpritesFar->setScrollSpeed(-100.0f);
-
-	// Create the close background
-	Actor* bgClose = new Actor();
-	std::vector<Texture*> bgTexsClose{
-		&Assets::getTexture("Stars"),
-		&Assets::getTexture("Stars")
-	};
-	BackgroundSpriteComponent* bgSpritesClose = 
-		new BackgroundSpriteComponent(bgClose, bgTexsClose, 50);
-	bgSpritesClose->setScrollSpeed(-200.0f);
-
-	const int asteroidNumber = 20;
-	for (int i = 0; i < asteroidNumber; ++i)
-	{
-		new Asteroid();
-	}
+	grid = new Grid();
 }
 
 void Game::loop()
@@ -185,6 +160,17 @@ void Game::update(float dt)
 	for (auto deadActor : deadActors)
 	{
 		delete deadActor;
+	}
+
+	// Process mouse
+	int* x = 0;
+	int* y = 0;
+	Uint32 buttons = SDL_GetMouseState(x, y);
+	if (SDL_BUTTON(buttons) & SDL_BUTTON_LEFT)
+	{
+		int xDref = *x;
+		int yDref = *y;
+		grid->processClick(xDref, yDref);
 	}
 }
 

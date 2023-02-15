@@ -1,5 +1,6 @@
 #pragma once
 #include "Asteroid.h"
+#include "Grid.h"
 #include "Renderer.h"
 #include "Vector2.h"
 #include "Window.h"
@@ -41,7 +42,8 @@ public:
 private:
 	Game() : 
 		isRunning(true), 
-		isUpdatingActors(false)
+		isUpdatingActors(false),
+		grid(nullptr)
 	{}
 	
 	void processInput();
@@ -58,4 +60,5 @@ private:
 
 	// Game specific
 	vector<Asteroid*> asteroids;
+	Grid* grid;
 };

@@ -11,7 +11,7 @@ bool Window::initialize()
 		Log::error(LogCategory::Video, "Unable to initialize SDL");
 		return false;
 	}
-	window = SDL_CreateWindow("Wall Pong", 100, 100, width, height, 0); // 0 is a flag we will use later
+	window = SDL_CreateWindow("Tower Defense", 100, 100, width, height, 0); // 0 is a flag we will use later
 
 	if (!window)
 	{
