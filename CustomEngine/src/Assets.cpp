@@ -1,7 +1,9 @@
+#include <fstream>
+#include <iostream>
+#include <sstream>
+
 #include "Assets.h"
 #include "Log.h"
-
-#include <sstream>
 
 std::map<std::string, Texture> Assets::textures;
 
@@ -33,6 +35,10 @@ void Assets::clear()
 Texture Assets::loadTextureFromFile(IRenderer& renderer, const string& filename)
 {
 	Texture texture;
-	texture.load(renderer, filename);
+	// texture.load(renderer, filename);
+	if (renderer.type() == IRenderer::Type::SDL)
+	{
+		texture.load(dynamic_cast<RendererSDL&>(renderer), filename);
+	}
 	return texture;
 }
