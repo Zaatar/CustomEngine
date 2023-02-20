@@ -161,7 +161,7 @@
     <ClCompile Include="src\NavigationComponent.cpp" />
     <ClCompile Include="src\Random.cpp" />
     <ClCompile Include="src\Rectangle.cpp" />
-    <ClCompile Include="src\Renderer.cpp" />
+    <ClCompile Include="src\RendererSDL.cpp" />
     <ClCompile Include="src\Ship.cpp" />
     <ClCompile Include="src\SpriteComponent.cpp" />
     <ClCompile Include="src\Texture.cpp" />
@@ -183,6 +183,7 @@
     <ClInclude Include="src\Game.h" />
     <ClInclude Include="src\Grid.h" />
     <ClInclude Include="src\InputComponent.h" />
+    <ClInclude Include="src\IRenderer.h" />
     <ClInclude Include="src\Laser.h" />
     <ClInclude Include="src\Log.h" />
     <ClInclude Include="src\Maths.h" />
@@ -190,7 +191,7 @@
     <ClInclude Include="src\NavigationComponent.h" />
     <ClInclude Include="src\Random.h" />
     <ClInclude Include="src\Rectangle.h" />
-    <ClInclude Include="src\Renderer.h" />
+    <ClInclude Include="src\RendererSDL.h" />
     <ClInclude Include="src\Ship.h" />
     <ClInclude Include="src\SpriteComponent.h" />
     <ClInclude Include="src\Texture.h" />

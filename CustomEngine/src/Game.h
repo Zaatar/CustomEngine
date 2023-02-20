@@ -1,7 +1,7 @@
 #pragma once
 #include "Asteroid.h"
 #include "Grid.h"
-#include "Renderer.h"
+#include "RendererSDL.h"
 #include "Vector2.h"
 #include "Window.h"
 
@@ -32,7 +32,7 @@ public:
 	void addActor(Actor* actor);
 	void removeActor(Actor* actor);
 
-	Renderer& getRenderer() { return renderer; }
+	RendererSDL& getRenderer() { return renderer; }
 
 	// Game specific
 	vector<Asteroid*>& getAsteroids();
@@ -55,7 +55,7 @@ private:
 
 	Window window;
 	bool isRunning;
-	Renderer renderer;
+	RendererSDL renderer;
 
 	bool isUpdatingActors;
 	vector<Actor*> actors;

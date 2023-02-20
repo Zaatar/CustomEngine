@@ -8,7 +8,7 @@
 
 #include <SDL2/SDL_image.h>
 
-class Renderer
+class RendererSDL
 {
 public:
 	enum class Flip
@@ -18,10 +18,10 @@ public:
 		Vertical = SDL_FLIP_VERTICAL
 	};
 
-	Renderer();
-	//~Renderer();
-	Renderer(const Renderer&) = delete;
-	Renderer& operator=(const Renderer&) = delete;
+	RendererSDL();
+	~RendererSDL();
+	RendererSDL(const RendererSDL&) = delete;
+	RendererSDL& operator=(const RendererSDL&) = delete;
 
 	bool initialize(Window& window);
 	void beginDraw();

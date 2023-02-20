@@ -21,7 +21,7 @@ public:
 	void setScrollSpeed(float scrollSpeedP);
 
 	void update(float dt) override;
-	void draw(Renderer& renderer) override;
+	void draw(RendererSDL& renderer) override;
 
 private:
 	// Struct to encapsulate each bg image and its offset

@@ -1,13 +1,15 @@
 #include "Log.h"
 #include "Maths.h"
-#include "Renderer.h"
+#include "RendererSDL.h"
 #include "SpriteComponent.h"
 #include "Texture.h"
 
 
-Renderer::Renderer() :SDLRenderer(nullptr) {}
+RendererSDL::RendererSDL() :SDLRenderer(nullptr) {}
 
-bool Renderer::initialize(Window& window)
+RendererSDL::~RendererSDL() {};
+
+bool RendererSDL::initialize(Window& window)
 {
 	SDLRenderer = SDL_CreateRenderer(window.getSDLWindow(), -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	if (!SDLRenderer)
@@ -23,30 +25,30 @@ bool Renderer::initialize(Window& window)
 	return true;
 }
 
-void Renderer::beginDraw()
+void RendererSDL::beginDraw()
 {
 	SDL_SetRenderDrawColor(SDLRenderer, 120, 120, 255, 255);
 	SDL_RenderClear(SDLRenderer);
 }
 
-void Renderer::draw()
+void RendererSDL::draw()
 {
 	drawSprites();
 }
 
-void Renderer::endDraw()
+void RendererSDL::endDraw()
 {
 	SDL_RenderPresent(SDLRenderer);
 }
 
-void Renderer::drawRect(const Rectangle& rect) const
+void RendererSDL::drawRect(const Rectangle& rect) const
 {
 	SDL_SetRenderDrawColor(SDLRenderer, 255, 255, 255, 255);
 	SDL_Rect SDLRect = rect.toSDLRect();
 	SDL_RenderFillRect(SDLRenderer, &SDLRect);
 }
 
-void Renderer::addSprite(SpriteComponent* sprite)
+void RendererSDL::addSprite(SpriteComponent* sprite)
 {
 	// Insert the sprite at the right place in function of drawOrder
 	int spriteDrawOrder = sprite->getDrawOrder();
@@ -58,14 +60,14 @@ void Renderer::addSprite(SpriteComponent* sprite)
 	sprites.insert(iter, sprite);
 }
 
-void Renderer::removeSprite(SpriteComponent* sprite)
+void RendererSDL::removeSprite(SpriteComponent* sprite)
 {
 	auto iter = std::find(begin(sprites), end(sprites), sprite);
 	//TODO: Add if condition to check if sprite exists before we erase it.
 	sprites.erase(iter);
 }
 
-void Renderer::drawSprites()
+void RendererSDL::drawSprites()
 {
 	for (auto sprite : sprites)
 	{
@@ -73,7 +75,7 @@ void Renderer::drawSprites()
 	}
 }
 
-void Renderer::drawSprite(const Actor& actor,
+void RendererSDL::drawSprite(const Actor& actor,
 	const class Texture& texture, Rectangle srcRect, Vector2 origin, Flip flip) const
 {
 	SDL_Rect destinationRect;
@@ -111,7 +113,7 @@ void Renderer::drawSprite(const Actor& actor,
 	delete srcSDL;
 }
 
-void Renderer::close()
+void RendererSDL::close()
 {
 	SDL_DestroyRenderer(SDLRenderer);
 }
