@@ -161,13 +161,16 @@
     <ClCompile Include="src\NavigationComponent.cpp" />
     <ClCompile Include="src\Random.cpp" />
     <ClCompile Include="src\Rectangle.cpp" />
+    <ClCompile Include="src\RendererOGL.cpp" />
     <ClCompile Include="src\RendererSDL.cpp" />
+    <ClCompile Include="src\Shader.cpp" />
     <ClCompile Include="src\Ship.cpp" />
     <ClCompile Include="src\SpriteComponent.cpp" />
     <ClCompile Include="src\Texture.cpp" />
     <ClCompile Include="src\Tile.cpp" />
     <ClCompile Include="src\Timer.cpp" />
     <ClCompile Include="src\Vector2.cpp" />
+    <ClCompile Include="src\VertexArray.cpp" />
     <ClCompile Include="src\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -191,13 +194,16 @@
     <ClInclude Include="src\NavigationComponent.h" />
     <ClInclude Include="src\Random.h" />
     <ClInclude Include="src\Rectangle.h" />
+    <ClInclude Include="src\RendererOGL.h" />
     <ClInclude Include="src\RendererSDL.h" />
     <ClInclude Include="src\Ship.h" />
+    <ClInclude Include="src\Shader.h" />
     <ClInclude Include="src\SpriteComponent.h" />
     <ClInclude Include="src\Texture.h" />
     <ClInclude Include="src\Tile.h" />
     <ClInclude Include="src\Timer.h" />
     <ClInclude Include="src\Vector2.h" />
+    <ClInclude Include="src\VertexArray.h" />
     <ClInclude Include="src\Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
