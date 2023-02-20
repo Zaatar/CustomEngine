@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Actor.h"
+#include "IRenderer.h"
 #include "Rectangle.h"
 #include "Vector2.h"
 #include "Window.h"
@@ -8,16 +9,9 @@
 
 #include <SDL2/SDL_image.h>
 
-class RendererSDL
+class RendererSDL : public IRenderer
 {
 public:
-	enum class Flip
-	{
-		None = SDL_FLIP_NONE,
-		Horizontal = SDL_FLIP_HORIZONTAL,
-		Vertical = SDL_FLIP_VERTICAL
-	};
-
 	RendererSDL();
 	~RendererSDL();
 	RendererSDL(const RendererSDL&) = delete;
@@ -32,10 +26,12 @@ public:
 	void addSprite(class SpriteComponent* sprite);
 	void removeSprite(class SpriteComponent* sprite);
 	void drawSprites();
-	void drawSprite(const Actor& actor,
-		const class Texture& texture, Rectangle srcRect, Vector2 origin, Flip flip) const;
-
+	void drawSprite(const class Actor& actor, const class Texture& texture,
+		struct Rectangle srcRect, Vector2 origin, IRenderer::Flip flip) const override;
+	
 	SDL_Renderer* toSDLRenderer() const { return SDLRenderer; }
+
+	IRenderer::Type type() override;
 
 	void close();
 

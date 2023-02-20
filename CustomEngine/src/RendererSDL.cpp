@@ -75,7 +75,7 @@ void RendererSDL::drawSprites()
 	}
 }
 
-void RendererSDL::drawSprite(const Actor& actor,
+void RendererSDL::drawSprite(const class Actor& actor,
 	const class Texture& texture, Rectangle srcRect, Vector2 origin, Flip flip) const
 {
 	SDL_Rect destinationRect;
@@ -111,6 +111,11 @@ void RendererSDL::drawSprite(const Actor& actor,
 		static_cast<SDL_RendererFlip>(flip));
 
 	delete srcSDL;
+}
+
+IRenderer::Type RendererSDL::type()
+{
+	return IRenderer::Type::SDL;
 }
 
 void RendererSDL::close()

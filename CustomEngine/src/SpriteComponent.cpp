@@ -26,7 +26,7 @@ void SpriteComponent::setTexture(const Texture& textureP)
 	texture.updateInfo(texWidth, texHeight);
 }
 
-void SpriteComponent::draw(RendererSDL& renderer)
+void SpriteComponent::draw(IRenderer& renderer)
 {
 	if (delayDraw)
 	{
@@ -40,7 +40,7 @@ void SpriteComponent::draw(RendererSDL& renderer)
 		delayDraw = false;
 	}
 	Vector2 origin{ texWidth / 2.0f, texHeight / 2.0f };
-	renderer.drawSprite(owner, texture, Rectangle::nullRect, origin, RendererSDL::Flip::None);
+	renderer.drawSprite(owner, texture, Rectangle::nullRect, origin, IRenderer::Flip::None);
 }
 
 void SpriteComponent::setDelayDraw(bool delayDrawP)

@@ -12,7 +12,7 @@ public:
 	~Texture();
 
 	void unload();
-	bool load(RendererSDL& rendererP, const string& filenameP);
+	bool load(IRenderer& rendererP, const string& filenameP);
 	inline SDL_Texture* toSDLTexture() const { return SDLTexture; }
 	void updateInfo(int& widthOut, int& heightOut);
 

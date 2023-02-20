@@ -13,7 +13,7 @@ void Texture::unload()
 	}
 }
 
-bool Texture::load(RendererSDL& renderer, const string& filenameP)
+bool Texture::load(IRenderer& renderer, const string& filenameP)
 {
 	filename = filenameP;
 	// Load from file
@@ -27,8 +27,14 @@ bool Texture::load(RendererSDL& renderer, const string& filenameP)
 	width = surf->w;
 	height = surf->h;
 
+	/*if (renderer.type() == IRenderer::Type::SDL)
+	{
+		RendererSDL rendererSDL = RendererSDL();
+		SDLTexture = SDL_CreateTextureFromSurface(rendererSDL.toSDLRenderer(), surf);
+		SDL_FreeSurface(surf);
+	}*/
 	// Create texture from surface
-	SDLTexture = SDL_CreateTextureFromSurface(renderer.toSDLRenderer(), surf);
+	SDLTexture = SDL_CreateTextureFromSurface(rendererSDL.toSDLRenderer(), surf);
 	SDL_FreeSurface(surf);
 
 	if (!SDLTexture)
