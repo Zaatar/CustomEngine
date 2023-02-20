@@ -171,13 +171,12 @@
     <ClCompile Include="src\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Ball.h" />
-    <ClInclude Include="NavigationComponent.h" />
     <ClInclude Include="src\Actor.h" />
     <ClInclude Include="src\AnimSpriteComponent.h" />
     <ClInclude Include="src\Assets.h" />
     <ClInclude Include="src\Asteroid.h" />
     <ClInclude Include="src\BackgroundSpriteComponent.h" />
+    <ClInclude Include="src\Ball.h" />
     <ClInclude Include="src\CircleCollisionComponent.h" />
     <ClInclude Include="src\Component.h" />
     <ClInclude Include="src\Enemy.h" />
@@ -188,6 +187,7 @@
     <ClInclude Include="src\Log.h" />
     <ClInclude Include="src\Maths.h" />
     <ClInclude Include="src\MoveComponent.h" />
+    <ClInclude Include="src\NavigationComponent.h" />
     <ClInclude Include="src\Random.h" />
     <ClInclude Include="src\Rectangle.h" />
     <ClInclude Include="src\Renderer.h" />
