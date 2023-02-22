@@ -13,6 +13,7 @@ bool Game::initialize()
 {
 	bool isWindowInit = window.initialize();
 	bool isRendererInit = renderer.initialize(window);
+	rendererOGL.initialize(window);
 
 	int windowWidth = window.getWidth();
 	int windowHeight = window.getHeight();
@@ -67,6 +68,11 @@ void Game::load()
 	Assets::loadTexture(renderer,
 		"C://Repository//C++//CustomEngine//CustomEngine//src//Res//Tower.png",
 		"Tower");
+
+	Assets::loadShader(
+		"C://Repository//C++//CustomEngine//CustomEngine//src//Shaders//Basic.vert",
+		"C://Repository//C++//CustomEngine//CustomEngine//src//Shaders//Basic.frag",
+		"", "", "", "Basic");
 
 	grid = new Grid();
 }

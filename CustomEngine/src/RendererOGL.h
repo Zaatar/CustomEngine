@@ -3,6 +3,7 @@
 #include <vector>
 
 #include "IRenderer.h"
+#include "Shader.h"
 #include "Vector2.h"
 #include "VertexArray.h"
 
@@ -14,6 +15,8 @@ public:
 	virtual ~RendererOGL();
 	RendererOGL(const RendererOGL&) = delete;
 	RendererOGL& operator=(const RendererOGL&) = delete;
+
+	Shader* shader;
 
 	bool initialize(Window& window);
 	void beginDraw();

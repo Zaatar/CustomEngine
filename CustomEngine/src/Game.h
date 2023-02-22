@@ -1,6 +1,7 @@
 #pragma once
 #include "Asteroid.h"
 #include "Grid.h"
+#include "RendererOGL.h"
 #include "RendererSDL.h"
 #include "Vector2.h"
 #include "Window.h"
@@ -57,6 +58,7 @@ private:
 	Window window;
 	bool isRunning;
 	RendererSDL renderer;
+	RendererOGL rendererOGL;
 
 	bool isUpdatingActors;
 	vector<Actor*> actors;

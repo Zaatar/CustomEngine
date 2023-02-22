@@ -197,5 +197,12 @@
     <ClInclude Include="src\Shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Vector3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\Shaders\Basic.vert" />
+    <None Include="src\Shaders\Basic.frag" />
   </ItemGroup>
 </Project>

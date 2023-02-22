@@ -2,6 +2,7 @@
 #include <GL/glew.h>
 #include <GL/gl.h>
 #include <GL/glu.h>
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -21,7 +22,7 @@ public:
 	// Constructor
 	Shader() : 
 		id(0), vertexSource(0), fragmentSource(0), geometrySource(0),
-		tesselationControlSource(0), tesselationEvaluationSource(0) {};
+		tesselationControlSource(0), tesselationEvaluationSource(0) {}
 
 	// Unload the shader
 	void unload();
@@ -53,7 +54,7 @@ public:
 	*/
 
 private:
-	GLuint vertexSource;
+	GLuint vertexSource = 0;
 	GLuint fragmentSource;
 	GLuint tesselationControlSource;
 	GLuint tesselationEvaluationSource;
