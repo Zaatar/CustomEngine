@@ -74,6 +74,11 @@ void Game::load()
 		"C://Repository//C++//CustomEngine//CustomEngine//src//Shaders//Basic.frag",
 		"", "", "", "Basic");
 
+	Assets::loadShader(
+		"C://Repository//C++//CustomEngine//CustomEngine//src//Shaders//Transform.vert",
+		"C://Repository//C++//CustomEngine//CustomEngine//src//Shaders//Basic.frag",
+		"", "", "", "Transform");
+
 	grid = new Grid();
 }
 
@@ -156,6 +161,7 @@ void Game::update(float dt)
 	// Move pending actors to actors
 	for (auto pendingActor : pendingActors)
 	{
+		pendingActor->computeWorldTransform();
 		actors.emplace_back(pendingActor);
 	}
 	pendingActors.clear();
@@ -176,17 +182,12 @@ void Game::update(float dt)
 	}
 
 	// Process mouse
-	int* x = 0;
-	int* y = 0;
-	Uint32 buttons = SDL_GetMouseState(x, y);
+	int x = 0;
+	int y = 0;
+	Uint32 buttons = SDL_GetMouseState(&x, &y);
 	if (SDL_BUTTON(buttons) & SDL_BUTTON_LEFT)
 	{
-		Log::info("ProcessClick");
-		int xDref = *x;
-		int yDref = *y;
-		grid->processClick(xDref, yDref);
-		Log::info("ProcessClick X: " + xDref);
-		Log::info("ProcessClick Y: " + yDref);
+		grid->processClick(x, y);
 	}
 }
 

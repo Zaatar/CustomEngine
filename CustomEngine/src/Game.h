@@ -34,7 +34,7 @@ public:
 	void removeActor(Actor* actor);
 
 	RendererSDL& getRenderer() { return renderer; }
-	IRenderer::Type type() { return IRenderer::Type::SDL; }
+	IRenderer::Type type() { return IRenderer::Type::OGL; }
 
 	// Game specific
 	vector<Asteroid*>& getAsteroids();

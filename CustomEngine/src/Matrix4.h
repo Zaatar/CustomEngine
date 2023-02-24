@@ -127,6 +127,8 @@ public:
 			a.mat[3][1] * b.mat[1][3] +
 			a.mat[3][2] * b.mat[2][3] +
 			a.mat[3][3] * b.mat[3][3];
+
+		return retVal;
 	}
 
 	Matrix4& operator*=(const Matrix4& right)

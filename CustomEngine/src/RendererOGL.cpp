@@ -1,6 +1,7 @@
 #include <GL/glew.h>
 #include <SDL2/SDL_image.h>
 
+#include "Actor.h"
 #include "Assets.h"
 #include "Log.h"
 #include "Rectangle.h"
@@ -53,7 +54,7 @@ bool RendererOGL::initialize(Window& windowP)
 	}
 
 	vertexArray = new VertexArray(vertices, 4, indices, 6);
-	shader = &Assets::getShader("Basic");
+	shader = &Assets::getShader("Transform");
 	return true;
 }
 
@@ -78,6 +79,12 @@ void RendererOGL::draw()
 void RendererOGL::drawSprite(const Actor& actor, const Texture& texture,
 	Rectangle srcRect, Vector2 origin, Flip flip) const 
 {
+	Matrix4 scaleMat = Matrix4::createScale((float)texture.getWidth(), 
+		(float)texture.getHeight(), 1.0f);
+	Matrix4 world = scaleMat * actor.getWorldTransform();
+	Matrix4 pixelTranslation = Matrix4::createTranslation(Vector3(
+		-WINDOW_WIDTH / 2 - origin.x, -WINDOW_HEIGHT / 2 - origin.y, 0.0f));
+	shader->setMatrix4("uWorldTransform", world * pixelTranslation);
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 }
 

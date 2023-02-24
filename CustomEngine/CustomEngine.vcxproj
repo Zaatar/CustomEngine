@@ -213,6 +213,7 @@
   <ItemGroup>
     <None Include="src\Shaders\Basic.frag" />
     <None Include="src\Shaders\Basic.vert" />
+    <None Include="src\Shaders\Transform.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

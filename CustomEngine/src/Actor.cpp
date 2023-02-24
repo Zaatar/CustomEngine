@@ -130,7 +130,7 @@ void Actor::computeWorldTransform()
 
 		for (auto component : components)
 		{
-			component->OnUpdateWorldTransform();
+			component->onUpdateWorldTransform();
 		}
 	}
 }

@@ -15,6 +15,7 @@ public:
 	int getUpdateOrder() const { return updateOrder; }
 	virtual void update(float dt);
 	virtual void processInput(const Uint8* keyState);
+	virtual void onUpdateWorldTransform() {}
 
 protected:
 	Actor& owner;
