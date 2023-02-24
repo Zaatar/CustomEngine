@@ -157,6 +157,7 @@
     <ClCompile Include="src\Laser.cpp" />
     <ClCompile Include="src\Log.cpp" />
     <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\Matrix4.cpp" />
     <ClCompile Include="src\MoveComponent.cpp" />
     <ClCompile Include="src\NavigationComponent.cpp" />
     <ClCompile Include="src\Random.cpp" />
@@ -170,6 +171,7 @@
     <ClCompile Include="src\Tile.cpp" />
     <ClCompile Include="src\Timer.cpp" />
     <ClCompile Include="src\Vector2.cpp" />
+    <ClCompile Include="src\Vector3.cpp" />
     <ClCompile Include="src\VertexArray.cpp" />
     <ClCompile Include="src\Window.cpp" />
   </ItemGroup>
@@ -190,6 +192,7 @@
     <ClInclude Include="src\Laser.h" />
     <ClInclude Include="src\Log.h" />
     <ClInclude Include="src\Maths.h" />
+    <ClInclude Include="src\Matrix4.h" />
     <ClInclude Include="src\MoveComponent.h" />
     <ClInclude Include="src\NavigationComponent.h" />
     <ClInclude Include="src\Random.h" />
