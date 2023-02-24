@@ -43,6 +43,11 @@ public:
 		return Vector3(vec.x * scalar, vec.y * scalar, vec.z * scalar);
 	}
 
+	friend Vector3 operator*(float scalar, const Vector3& vec)
+	{
+		return Vector3(vec.x * scalar, vec.y * scalar, vec.z * scalar);
+	}
+
 	// Scalar *=
 	Vector3& operator*=(float scalar)
 	{
@@ -51,4 +56,71 @@ public:
 		z *= scalar;
 		return *this;
 	}
+
+	// Vector +=
+	Vector3& operator+=(const Vector3& right)
+	{
+		x += right.x;
+		y += right.y;
+		z += right.z;
+		return *this;
+	}
+
+	// Vector -=
+	Vector3& operator-=(const Vector3& right)
+	{
+		x -= right.x;
+		y -= right.y;
+		z -= right.z;
+		return *this;
+	}
+
+	// Normalize the provided vector
+	static Vector3 normalize(const Vector3& vec)
+	{
+		Vector3 temp = vec;
+		temp.normalize();
+		return temp;
+	}
+
+	// Dot product between two vectors (a dot b)
+	static float dot(const Vector3& a, const Vector3& b)
+	{
+		return (a.x * b.x + a.y * b.y + a.z * b.z);
+	}
+
+	// Cross product between two vectors (a cross b)
+	static Vector3 cross(const Vector3& a, const Vector3& b)
+	{
+		Vector3 temp;
+		temp.x = a.y * b.z - a.z * b.y;
+		temp.y = a.z * b.x - a.x * b.z;
+		temp.z = a.x * b.y - a.y * b.x;
+		return temp;
+	}
+
+	// Lerp from A to B by f
+	static Vector3 lerp(const Vector3& a, const Vector3& b, float f)
+	{
+		return Vector3(a + f * (b - a));
+	}
+
+	// Reflect V about (normalized) N
+	static Vector3 reflect(const Vector3& v, const Vector3& n)
+	{
+		return v - 2.0f * Vector3::dot(v, n) * n;
+	}
+
+	static const Vector3 zero;
+	
+	static const Vector3 unitX;
+	static const Vector3 unitY;
+	static const Vector3 unitZ;
+
+	static const Vector3 negUnitX;
+	static const Vector3 negUnitY;
+	static const Vector3 negUnitZ;
+
+	static const Vector3 infinity;
+	static const Vector3 negInfinity;
 };
