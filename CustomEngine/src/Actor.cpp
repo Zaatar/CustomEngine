@@ -10,6 +10,7 @@ Actor::Actor() :
 	position(Vector2::zero),
 	scale(1.0f),
 	rotation(0.0f),
+	mustRecomputeWorldTransform(true),
 	game(Game::instance())
 {
 	game.addActor(this);
@@ -28,8 +29,8 @@ Actor::~Actor()
 
 Vector2 Actor::getForward() const
 {
-	return Vector2(Maths::cos(rotation), -Maths::sin(rotation));
-	// Sin is inverted because in 2D games the positive axis is inverted toward the bottom
+	return Vector2(Maths::cos(rotation), Maths::sin(rotation));
+	// Positive in open GL negative in SDL renderer
 }
 
 void Actor::setState(ActorState stateP)
@@ -40,16 +41,19 @@ void Actor::setState(ActorState stateP)
 void Actor::setPosition(Vector2 positionP)
 {
 	position = positionP;
+	mustRecomputeWorldTransform = true;
 }
 
 void Actor::setScale(float scaleP)
 {
 	scale = scaleP;
+	mustRecomputeWorldTransform = true;
 }
 
 void Actor::setRotation(float rotationP)
 {
 	rotation = rotationP;
+	mustRecomputeWorldTransform = true;
 }
 
 void Actor::update(float dt)
@@ -114,3 +118,19 @@ void Actor::processInput(const Uint8* keyState)
 }
 
 void Actor::actorInput(const Uint8* keyState) {}
+
+void Actor::computeWorldTransform()
+{
+	if (mustRecomputeWorldTransform)
+	{
+		mustRecomputeWorldTransform = false;
+		worldTransform = Matrix4::createScale(scale);
+		worldTransform *= Matrix4::createRotationZ(rotation);
+		worldTransform *= Matrix4::createTranslation(Vector3(position.x, position.y, 0.0f));
+
+		for (auto component : components)
+		{
+			component->OnUpdateWorldTransform();
+		}
+	}
+}

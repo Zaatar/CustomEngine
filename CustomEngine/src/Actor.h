@@ -1,6 +1,7 @@
 #pragma once
 #include <SDL2/SDL_stdinc.h>
 #include <vector>
+#include "Matrix4.h"
 #include "Vector2.h"
 
 using std::vector;
@@ -24,6 +25,8 @@ public:
 	Game& getGame() const { return game; }
 	const ActorState getState() const { return state; }
 	const Vector2 getPosition() const { return position; }
+	const Matrix4& getWorldTransform() const { return worldTransform; }
+
 	const float getScale() const { return scale; }
 	const float getRotation() const { return rotation; }
 	Vector2 getForward() const;
@@ -42,6 +45,8 @@ public:
 	void processInput(const Uint8* keyState);
 	virtual void actorInput(const Uint8* keyState);
 
+	void computeWorldTransform();
+
 private:
 	Game& game;
 	ActorState state;
@@ -50,4 +55,7 @@ private:
 	float rotation; // Rotation in radians
 
 	vector<Component*> components;
+
+	Matrix4 worldTransform;
+	bool mustRecomputeWorldTransform;
 };
