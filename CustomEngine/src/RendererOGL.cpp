@@ -66,7 +66,7 @@ void RendererOGL::beginDraw()
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	// Active shader and vertex array
-	shader = &Assets::getShader("Transform");
+	shader = &Assets::getShader("Sprite");
 	shader->use();
 	shader->setMatrix4("uViewProjection",viewProjection);
 	vertexArray->setActive();
@@ -86,6 +86,7 @@ void RendererOGL::drawSprite(const Actor& actor, const Texture& texture,
 	Matrix4 pixelTranslation = Matrix4::createTranslation(Vector3(
 		-WINDOW_WIDTH / 2 - origin.x, -WINDOW_HEIGHT / 2 - origin.y, 0.0f));
 	shader->setMatrix4("uWorldTransform", world * pixelTranslation);
+	texture.setActive();
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 }
 

@@ -29,6 +29,11 @@ void Game::load()
 		"C://Repository//C++//CustomEngine//CustomEngine//src//Shaders//Transform.vert",
 		"C://Repository//C++//CustomEngine//CustomEngine//src//Shaders//Basic.frag",
 		"", "", "", "Transform");
+
+	Assets::loadShader(
+		"C://Repository//C++//CustomEngine//CustomEngine//src//Shaders//Sprite.vert",
+		"C://Repository//C++//CustomEngine//CustomEngine//src//Shaders//Sprite.frag",
+		"", "", "", "Sprite");
 }
 
 void Game::loop()
