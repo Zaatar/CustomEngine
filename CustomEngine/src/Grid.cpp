@@ -1,6 +1,7 @@
 #include <algorithm>
 
 #include "Grid.h"
+#include "Enemy.h"
 #include "Tile.h"
 
 Grid::Grid() : Actor(), selectedTile(nullptr), nextEnemyTimer(0)

@@ -4,7 +4,6 @@
 
 #include "Assets.h"
 #include "Log.h"
-#include "RendererOGL.h"
 
 std::map<std::string, Texture> Assets::textures;
 std::map<std::string, Shader> Assets::shaders;
@@ -39,17 +38,13 @@ void Assets::clear()
 	shaders.clear();
 }
 
-Texture Assets::loadTextureFromFile(IRenderer& rendererP, const string& filenameP)
+Texture Assets::loadTextureFromFile(IRenderer& renderer, const string& filename)
 {
 	Texture texture;
 	// texture.load(renderer, filename);
-	if (rendererP.type() == IRenderer::Type::SDL)
+	if (renderer.type() == IRenderer::Type::SDL)
 	{
-		texture.loadSDL(dynamic_cast<RendererSDL&>(rendererP), filenameP);
-	}
-	else if (rendererP.type() == IRenderer::Type::OGL)
-	{
-		texture.loadOGL(dynamic_cast<RendererOGL&>(rendererP), filenameP);
+		texture.load(dynamic_cast<RendererSDL&>(renderer), filename);
 	}
 	return texture;
 }
