@@ -37,5 +37,6 @@ private:
 	Window* window;
 	VertexArray* vertexArray;
 	SDL_GLContext context;
+	Matrix4 viewProjection;
 	std::vector<class SpriteComponent*> sprites;
 };

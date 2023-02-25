@@ -9,7 +9,7 @@
 #include "SpriteComponent.h"
 #include "Vector2.h"
 
-RendererOGL::RendererOGL() : window(nullptr), vertexArray(nullptr), context(nullptr), shader(nullptr) 
+RendererOGL::RendererOGL() : window(nullptr), vertexArray(nullptr), context(nullptr), shader(nullptr), viewProjection(Matrix4::createSimpleViewProjection(WINDOW_WIDTH, WINDOW_HEIGHT))
 	{}
 
 RendererOGL::~RendererOGL() {}
@@ -68,6 +68,7 @@ void RendererOGL::beginDraw()
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	// Active shader and vertex array
 	shader->use();
+	shader->setMatrix4("uViewProjection",viewProjection);
 	vertexArray->setActive();
 }
 
