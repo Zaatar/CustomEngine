@@ -54,7 +54,6 @@ bool RendererOGL::initialize(Window& windowP)
 	}
 
 	vertexArray = new VertexArray(vertices, 4, indices, 6);
-	shader = &Assets::getShader("Transform");
 	return true;
 }
 
@@ -67,6 +66,7 @@ void RendererOGL::beginDraw()
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	// Active shader and vertex array
+	shader = &Assets::getShader("Transform");
 	shader->use();
 	shader->setMatrix4("uViewProjection",viewProjection);
 	vertexArray->setActive();

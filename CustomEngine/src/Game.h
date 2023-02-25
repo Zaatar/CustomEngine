@@ -1,5 +1,4 @@
 #pragma once
-#include "Asteroid.h"
 #include "Grid.h"
 #include "RendererOGL.h"
 #include "RendererSDL.h"
@@ -33,22 +32,13 @@ public:
 	void addActor(Actor* actor);
 	void removeActor(Actor* actor);
 
-	RendererSDL& getRenderer() { return renderer; }
+	RendererOGL& getRenderer() { return rendererOGL; }
 	IRenderer::Type type() { return IRenderer::Type::OGL; }
-
-	// Game specific
-	vector<Asteroid*>& getAsteroids();
-	void addAsteroid(Asteroid* asteroid);
-	void removeAsteroid(Asteroid* asteroid);
-	class Grid& getGrid() { return *grid; }
-	std::vector<class Enemy*>& getEnemies() { return enemies; }
 
 private:
 	Game() : 
 		isRunning(true), 
-		isUpdatingActors(false),
-		grid(nullptr),
-		nextEnemyTimer(0.0f)
+		isUpdatingActors(false)
 	{}
 	
 	void processInput();
@@ -57,16 +47,10 @@ private:
 
 	Window window;
 	bool isRunning;
-	RendererSDL renderer;
+	RendererSDL rendererSDL;
 	RendererOGL rendererOGL;
 
 	bool isUpdatingActors;
 	vector<Actor*> actors;
 	vector<Actor*> pendingActors;
-
-	// Game specific
-	vector<Asteroid*> asteroids;
-	Grid* grid;
-	std::vector<class Enemy*> enemies;
-	float nextEnemyTimer;
 };
