@@ -9,7 +9,12 @@
 #include "SpriteComponent.h"
 #include "Vector2.h"
 
-RendererOGL::RendererOGL() : window(nullptr), vertexArray(nullptr), context(nullptr), shader(nullptr), viewProjection(Matrix4::createSimpleViewProjection(WINDOW_WIDTH, WINDOW_HEIGHT))
+RendererOGL::RendererOGL() : 
+	window(nullptr), 
+	vertexArray(nullptr), 
+	context(nullptr), 
+	shader(nullptr), 
+	viewProjection(Matrix4::createSimpleViewProjection(WINDOW_WIDTH, WINDOW_HEIGHT))
 	{}
 
 RendererOGL::~RendererOGL() {}
@@ -54,7 +59,6 @@ bool RendererOGL::initialize(Window& windowP)
 	}
 
 	vertexArray = new VertexArray(vertices, 4, indices, 6);
-	shader = &Assets::getShader("Transform");
 	return true;
 }
 
@@ -67,6 +71,8 @@ void RendererOGL::beginDraw()
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	// Active shader and vertex array
+
+	shader = &Assets::getShader("Sprite");
 	shader->use();
 	shader->setMatrix4("uViewProjection",viewProjection);
 	vertexArray->setActive();
@@ -86,6 +92,7 @@ void RendererOGL::drawSprite(const Actor& actor, const Texture& texture,
 	Matrix4 pixelTranslation = Matrix4::createTranslation(Vector3(
 		-WINDOW_WIDTH / 2 - origin.x, -WINDOW_HEIGHT / 2 - origin.y, 0.0f));
 	shader->setMatrix4("uWorldTransform", world * pixelTranslation);
+	texture.setActive();
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 }
 

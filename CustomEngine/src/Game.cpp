@@ -12,8 +12,7 @@
 bool Game::initialize()
 {
 	bool isWindowInit = window.initialize();
-	bool isRendererInit = renderer.initialize(window);
-	rendererOGL.initialize(window);
+	bool isRendererInit = rendererOGL.initialize(window);
 
 	int windowWidth = window.getWidth();
 	int windowHeight = window.getHeight();
@@ -23,49 +22,49 @@ bool Game::initialize()
 
 void Game::load()
 {
-	Assets::loadTexture(renderer,
+	Assets::loadTexture(rendererOGL,
 		"C://Repository//C++//CustomEngine//CustomEngine//src//Res//Airplane.png",
 		"Airplane");
-	Assets::loadTexture(renderer,
+	Assets::loadTexture(rendererOGL,
 		"C://Repository//C++//CustomEngine//CustomEngine//src//Res//Base.png",
 		"Base");
-	Assets::loadTexture(renderer,
+	Assets::loadTexture(rendererOGL,
 		"C://Repository//C++//CustomEngine//CustomEngine//src//Res//Missile.png",
 		"Missile");
-	Assets::loadTexture(renderer,
+	Assets::loadTexture(rendererOGL,
 		"C://Repository//C++//CustomEngine//CustomEngine//src//Res//Projectile.png",
 		"Projectile");
-	Assets::loadTexture(renderer,
+	Assets::loadTexture(rendererOGL,
 		"C://Repository//C++//CustomEngine//CustomEngine//src//Res//TileBrown.png",
 		"TileBrown");
-	Assets::loadTexture(renderer,
+	Assets::loadTexture(rendererOGL,
 		"C://Repository//C++//CustomEngine//CustomEngine//src//Res//TileBrownSelected.png",
 		"TileBrownSelected");
-	Assets::loadTexture(renderer,
+	Assets::loadTexture(rendererOGL,
 		"C://Repository//C++//CustomEngine//CustomEngine//src//Res//TileGreen.png",
 		"TileGreen");
-	Assets::loadTexture(renderer,
+	Assets::loadTexture(rendererOGL,
 		"C://Repository//C++//CustomEngine//CustomEngine//src//Res//TileGreenSelected.png",
 		"TileGreenSelected");
-	Assets::loadTexture(renderer,
+	Assets::loadTexture(rendererOGL,
 		"C://Repository//C++//CustomEngine//CustomEngine//src//Res//TileGrey.png",
 		"TileGrey");
-	Assets::loadTexture(renderer,
+	Assets::loadTexture(rendererOGL,
 		"C://Repository//C++//CustomEngine//CustomEngine//src//Res//TileGreySelected.png",
 		"TileGreySelected");
-	Assets::loadTexture(renderer,
+	Assets::loadTexture(rendererOGL,
 		"C://Repository//C++//CustomEngine//CustomEngine//src//Res//TileRed.png",
 		"TileRed");
-	Assets::loadTexture(renderer,
+	Assets::loadTexture(rendererOGL,
 		"C://Repository//C++//CustomEngine//CustomEngine//src//Res//TileRedSelected.png",
 		"TileRedSelected");
-	Assets::loadTexture(renderer,
+	Assets::loadTexture(rendererOGL,
 		"C://Repository//C++//CustomEngine//CustomEngine//src//Res//TileTan.png",
 		"TileTan");
-	Assets::loadTexture(renderer,
+	Assets::loadTexture(rendererOGL,
 		"C://Repository//C++//CustomEngine//CustomEngine//src//Res//TileTanSelected.png",
 		"TileTanSelected");
-	Assets::loadTexture(renderer,
+	Assets::loadTexture(rendererOGL,
 		"C://Repository//C++//CustomEngine//CustomEngine//src//Res//Tower.png",
 		"Tower");
 
@@ -78,6 +77,11 @@ void Game::load()
 		"C://Repository//C++//CustomEngine//CustomEngine//src//Shaders//Transform.vert",
 		"C://Repository//C++//CustomEngine//CustomEngine//src//Shaders//Basic.frag",
 		"", "", "", "Transform");
+
+	Assets::loadShader(
+		"C://Repository//C++//CustomEngine//CustomEngine//src//Shaders//Sprite.vert",
+		"C://Repository//C++//CustomEngine//CustomEngine//src//Shaders//Sprite.frag",
+		"", "", "", "Sprite");
 
 	grid = new Grid();
 }
@@ -110,7 +114,7 @@ void Game::unload()
 
 void Game::close()
 {
-	renderer.close();
+	rendererOGL.close();
 	window.close();
 	SDL_Quit();
 }
@@ -193,9 +197,9 @@ void Game::update(float dt)
 
 void Game::render() 
 {
-	renderer.beginDraw();
-	renderer.draw();
-	renderer.endDraw();
+	rendererOGL.beginDraw();
+	rendererOGL.draw();
+	rendererOGL.endDraw();
 }
 
 void Game::addActor(Actor* actor)

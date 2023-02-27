@@ -33,7 +33,8 @@ public:
 	void addActor(Actor* actor);
 	void removeActor(Actor* actor);
 
-	RendererSDL& getRenderer() { return renderer; }
+	RendererSDL& getRendererSDL() { return rendererSDL; }
+	RendererOGL& getRendererOGL() { return rendererOGL; }
 	IRenderer::Type type() { return IRenderer::Type::OGL; }
 
 	// Game specific
@@ -57,7 +58,7 @@ private:
 
 	Window window;
 	bool isRunning;
-	RendererSDL renderer;
+	RendererSDL rendererSDL;
 	RendererOGL rendererOGL;
 
 	bool isUpdatingActors;

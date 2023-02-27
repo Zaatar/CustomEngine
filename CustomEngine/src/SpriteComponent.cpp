@@ -12,12 +12,12 @@ SpriteComponent::SpriteComponent(Actor* ownerP, Texture& textureP, int drawOrder
 	texHeight(textureP.getHeight()),
 	delayDraw(false)
 {
-	owner.getGame().getRenderer().addSprite(this);
+	owner.getGame().getRendererOGL().addSprite(this);
 }
 
 SpriteComponent::~SpriteComponent()
 {
-	owner.getGame().getRenderer().removeSprite(this);
+	owner.getGame().getRendererOGL().removeSprite(this);
 }
 
 void SpriteComponent::setTexture(const Texture& textureP)
