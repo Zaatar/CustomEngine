@@ -160,6 +160,7 @@
     <ClCompile Include="src\Matrix4.cpp" />
     <ClCompile Include="src\MoveComponent.cpp" />
     <ClCompile Include="src\NavigationComponent.cpp" />
+    <ClCompile Include="src\Quaternion.cpp" />
     <ClCompile Include="src\Random.cpp" />
     <ClCompile Include="src\Rectangle.cpp" />
     <ClCompile Include="src\RendererOGL.cpp" />
@@ -195,6 +196,7 @@
     <ClInclude Include="src\Matrix4.h" />
     <ClInclude Include="src\MoveComponent.h" />
     <ClInclude Include="src\NavigationComponent.h" />
+    <ClInclude Include="src\Quaternion.h" />
     <ClInclude Include="src\Random.h" />
     <ClInclude Include="src\Rectangle.h" />
     <ClInclude Include="src\RendererOGL.h" />

@@ -1,6 +1,6 @@
 #pragma once
 #include <memory>
-
+#include "Quaternion.h"
 #include "Vector3.h"
 
 class Matrix4
@@ -248,6 +248,82 @@ public:
 			{0.0f, 2.0f / height, 0.0f, 0.0f},
 			{0.0f, 0.0f, 1.0f, 0.0f},
 			{0.0f, 0.0f, 1.0f, 1.0f}
+		};
+		return Matrix4(temp);
+	}
+
+	static Matrix4 createFromQuaternion(const Quaternion& q)
+	{
+		float mat[4][4];
+
+		mat[0][0] = 1.0f - 2.0f * q.y - 2.0f * q.z * q.z;
+		mat[0][1] = 2.0f * q.x * q.y + 2.0f * q.w * q.z;
+		mat[0][2] = 2.0f * q.x * q.z - 2.0f * q.w * q.y;
+		mat[0][3] = 0.0f;
+
+		mat[1][0] = 2.0f * q.x * q.y - 2.0f * q.w * q.z;
+		mat[1][1] = 1.0f - 2.0f * q.x * q.x - 2.0f * q.z * q.z;
+		mat[1][2] = 2.0f * q.y * q.z + 2.0f * q.w * q.x;
+		mat[1][3] = 0.0f;
+
+		mat[2][0] = 2.0f * q.x * q.z + 2.0f * q.w * q.y;
+		mat[2][1] = 2.0f * q.y * q.z - 2.0f * q.w * q.x;
+		mat[2][2] = 1.0f - 2.0f * q.x * q.x - 2.0f * q.y * q.y;
+		mat[2][3] = 0.0f;
+
+		mat[3][0] = 0.0f;
+		mat[3][1] = 0.0f;
+		mat[3][2] = 0.0f;
+		mat[3][3] = 1.0f;
+
+		return Matrix4(mat);
+	}
+
+	static Matrix4 createLookAt(const Vector3& eye, const Vector3& target, const Vector3& up)
+	{
+		Vector3 zaxis = Vector3::normalize(target - eye);
+		Vector3 xaxis = Vector3::normalize(Vector3::cross(up, zaxis));
+		Vector3 yaxis = Vector3::normalize(Vector3::cross(zaxis, xaxis));
+
+		Vector3 transform;
+		transform.x = -Vector3::dot(xaxis, eye);
+		transform.y = -Vector3::dot(yaxis, eye);
+		transform.z = -Vector3::dot(zaxis, eye);
+
+		float temp[4][4] =
+		{
+			{xaxis.x, yaxis.x, zaxis.x, 0.0f},
+			{xaxis.y, yaxis.y, zaxis.y, 0.0f},
+			{xaxis.z, yaxis.z, zaxis.z, 0.0f},
+			{transform.x, transform.y, transform.z, 1.0f}
+		};
+
+		return Matrix4(temp);
+	}
+
+	static Matrix4 createOrthogonal(float width, float height, float near, float far)
+	{
+		float temp[4][4] =
+		{
+			{2.0f / width, 0.0f, 0.0f, 0.0f},
+			{0.0f, 2.0f / height, 0.0f, 0.0f},
+			{0.0f, 0.0f, 1.0f / (far - near), 0.0f},
+			{0.0f, 0.0f, -near * far / (far - near), 0.0f}
+		};
+
+		return Matrix4(temp);
+	}
+
+	static Matrix4 createPerspectiveFOV(float fovY, float width, float height, float near, float far)
+	{
+		float yScale = Maths::cot(fovY / 2.0f);
+		float xScale = yScale * height / width;
+		float temp[4][4] =
+		{
+			{xScale, 0.0f, 0.0f, 0.0f},
+			{0.0f, yScale, 0.0f, 0.0f},
+			{0.0f, 0.0f, far / (far - near), 1.0f},
+			{0.0f, 0.0f, -near * far / (far - near), 0.0f}
 		};
 		return Matrix4(temp);
 	}
