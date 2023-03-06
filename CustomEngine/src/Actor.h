@@ -24,17 +24,17 @@ public:
 
 	Game& getGame() const { return game; }
 	const ActorState getState() const { return state; }
-	const Vector2 getPosition() const { return position; }
+	const Vector3 getPosition() const { return position; }
 	const Matrix4& getWorldTransform() const { return worldTransform; }
 
 	const float getScale() const { return scale; }
-	const float getRotation() const { return rotation; }
-	Vector2 getForward() const;
+	const Quaternion getRotation() const { return rotation; }
+	Vector3 getForward() const;
 
 	void setState(ActorState stateP);
-	void setPosition(Vector2 positionP);
+	void setPosition(Vector3 positionP);
 	void setScale(float scaleP);
-	void setRotation(float rotationP);
+	void setRotation(Quaternion rotationP);
 
 	void update(float dt);
 	void updateComponents(float dt);
@@ -50,9 +50,10 @@ public:
 private:
 	Game& game;
 	ActorState state;
-	Vector2 position;
+
+	Vector3 position;
 	float scale;
-	float rotation; // Rotation in radians
+	Quaternion rotation;
 
 	vector<Component*> components;
 

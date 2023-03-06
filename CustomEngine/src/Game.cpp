@@ -5,6 +5,7 @@
 #include "BackgroundSpriteComponent.h"
 #include "Game.h"
 #include "Log.h"
+#include "MeshComponent.h"
 #include "Ship.h"
 #include "SpriteComponent.h"
 #include "Timer.h"
@@ -22,68 +23,58 @@ bool Game::initialize()
 
 void Game::load()
 {
-	Assets::loadTexture(rendererOGL,
-		"C://Repository//C++//CustomEngine//CustomEngine//src//Res//Airplane.png",
-		"Airplane");
-	Assets::loadTexture(rendererOGL,
-		"C://Repository//C++//CustomEngine//CustomEngine//src//Res//Base.png",
-		"Base");
-	Assets::loadTexture(rendererOGL,
-		"C://Repository//C++//CustomEngine//CustomEngine//src//Res//Missile.png",
-		"Missile");
-	Assets::loadTexture(rendererOGL,
-		"C://Repository//C++//CustomEngine//CustomEngine//src//Res//Projectile.png",
-		"Projectile");
-	Assets::loadTexture(rendererOGL,
-		"C://Repository//C++//CustomEngine//CustomEngine//src//Res//TileBrown.png",
-		"TileBrown");
-	Assets::loadTexture(rendererOGL,
-		"C://Repository//C++//CustomEngine//CustomEngine//src//Res//TileBrownSelected.png",
-		"TileBrownSelected");
-	Assets::loadTexture(rendererOGL,
-		"C://Repository//C++//CustomEngine//CustomEngine//src//Res//TileGreen.png",
-		"TileGreen");
-	Assets::loadTexture(rendererOGL,
-		"C://Repository//C++//CustomEngine//CustomEngine//src//Res//TileGreenSelected.png",
-		"TileGreenSelected");
-	Assets::loadTexture(rendererOGL,
-		"C://Repository//C++//CustomEngine//CustomEngine//src//Res//TileGrey.png",
-		"TileGrey");
-	Assets::loadTexture(rendererOGL,
-		"C://Repository//C++//CustomEngine//CustomEngine//src//Res//TileGreySelected.png",
-		"TileGreySelected");
-	Assets::loadTexture(rendererOGL,
-		"C://Repository//C++//CustomEngine//CustomEngine//src//Res//TileRed.png",
-		"TileRed");
-	Assets::loadTexture(rendererOGL,
-		"C://Repository//C++//CustomEngine//CustomEngine//src//Res//TileRedSelected.png",
-		"TileRedSelected");
-	Assets::loadTexture(rendererOGL,
-		"C://Repository//C++//CustomEngine//CustomEngine//src//Res//TileTan.png",
-		"TileTan");
-	Assets::loadTexture(rendererOGL,
-		"C://Repository//C++//CustomEngine//CustomEngine//src//Res//TileTanSelected.png",
-		"TileTanSelected");
-	Assets::loadTexture(rendererOGL,
-		"C://Repository//C++//CustomEngine//CustomEngine//src//Res//Tower.png",
-		"Tower");
-
-	Assets::loadShader(
-		"C://Repository//C++//CustomEngine//CustomEngine//src//Shaders//Basic.vert",
-		"C://Repository//C++//CustomEngine//CustomEngine//src//Shaders//Basic.frag",
-		"", "", "", "Basic");
-
-	Assets::loadShader(
-		"C://Repository//C++//CustomEngine//CustomEngine//src//Shaders//Transform.vert",
-		"C://Repository//C++//CustomEngine//CustomEngine//src//Shaders//Basic.frag",
-		"", "", "", "Transform");
-
 	Assets::loadShader(
 		"C://Repository//C++//CustomEngine//CustomEngine//src//Shaders//Sprite.vert",
 		"C://Repository//C++//CustomEngine//CustomEngine//src//Shaders//Sprite.frag",
 		"", "", "", "Sprite");
+	Assets::loadShader(
+		"C://Repository//C++//CustomEngine//CustomEngine//src//Shaders//BasicMesh.vert",
+		"C://Repository//C++//CustomEngine//CustomEngine//src//Shaders//BasicMesh.frag",
+		"", "", "", "BasicMesh");
 
-	grid = new Grid();
+	Assets::loadTexture(rendererOGL,
+		"C://Repository//C++//CustomEngine//CustomEngine//src//Res//Default.png",
+		"Default");
+	Assets::loadTexture(rendererOGL,
+		"C://Repository//C++//CustomEngine//CustomEngine//src//Res//Cube.png",
+		"Cube");
+	Assets::loadTexture(rendererOGL,
+		"C://Repository//C++//CustomEngine//CustomEngine//src//Res//HealthBar.png",
+		"HealthBar");
+	Assets::loadTexture(rendererOGL,
+		"C://Repository//C++//CustomEngine//CustomEngine//src//Res//Plane.png",
+		"Plane");
+	Assets::loadTexture(rendererOGL,
+		"C://Repository//C++//CustomEngine//CustomEngine//src//Res//Radar.png",
+		"Radar");
+	Assets::loadTexture(rendererOGL,
+		"C://Repository//C++//CustomEngine//CustomEngine//src//Res//Sphere.png",
+		"Sphere");
+
+	Assets::loadMesh("C://Repository//C++//CustomEngine//CustomEngine//src/Meshes//Cube.gpmesh",
+		"Mesh_Cube");
+	Assets::loadMesh("C://Repository//C++//CustomEngine//CustomEngine//src/Meshes//Plane.gpmesh",
+		"Mesh_Plane");
+	Assets::loadMesh("C://Repository//C++//CustomEngine//CustomEngine//src/Meshes//Sphere.gpmesh",
+		"Mesh_Sphere");
+
+	camera = new Camera();
+
+	Actor* a = new Actor();
+	a->setPosition(Vector3(200.0f, 105.0f, 0.0f));
+	a->setScale(100.0f);
+
+	Quaternion q(Vector3::unitY, -Maths::piOver2);
+	q = Quaternion::concatenate(q, Quaternion(Vector3::unitZ, Maths::pi + Maths::pi / 4.0f));
+	a->setRotation(q);
+	MeshComponent* mc = new MeshComponent(a);
+	mc->setMesh(Assets::getMesh("Mesh_Cube"));
+
+	Actor* b = new Actor();
+	b->setPosition(Vector3(200.0f, -75.0f, 0.0f));
+	b->setScale(3.0f);
+	MeshComponent* mcb = new MeshComponent(b);
+	mcb->setMesh(Assets::getMesh("Mesh_Sphere"));
 }
 
 void Game::loop()
@@ -184,15 +175,6 @@ void Game::update(float dt)
 	{
 		delete deadActor;
 	}
-
-	// Process mouse
-	int x = 0;
-	int y = 0;
-	Uint32 buttons = SDL_GetMouseState(&x, &y);
-	if (SDL_BUTTON(buttons) & SDL_BUTTON_LEFT)
-	{
-		grid->processClick(x, y);
-	}
 }
 
 void Game::render() 
@@ -230,24 +212,5 @@ void Game::removeActor(Actor* actor)
 	{
 		std::iter_swap(iter, end(actors) - 1);
 		actors.pop_back();
-	}
-}
-
-vector<Asteroid*>& Game::getAsteroids()
-{
-	return asteroids;
-}
-
-void Game::addAsteroid(Asteroid* asteroid)
-{
-	asteroids.emplace_back(asteroid);
-}
-
-void Game::removeAsteroid(Asteroid* asteroid)
-{
-	auto iter = std::find(begin(asteroids), end(asteroids), asteroid);
-	if (iter != asteroids.end())
-	{
-		asteroids.erase(iter);
 	}
 }

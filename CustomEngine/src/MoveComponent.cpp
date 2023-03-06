@@ -20,21 +20,16 @@ void MoveComponent::update(float dt)
 {
 	if (!Maths::nearZero(angularSpeed))
 	{
-		float newRotation = owner.getRotation() + angularSpeed * dt;
+		Quaternion newRotation = owner.getRotation();
+		float angle = angularSpeed * dt;
+		Quaternion increment(Vector3::unitZ, angle);
+		newRotation = Quaternion::concatenate(newRotation, increment);
 		owner.setRotation(newRotation);
 	}
 
 	if (!Maths::nearZero(forwardSpeed))
 	{
-		Vector2 newPosition = owner.getPosition() + owner.getForward() * forwardSpeed * dt;
-		
-		// Screen wrapping (for asteroids)
-		if (newPosition.x < 0) { newPosition.x = WINDOW_WIDTH; }
-		else if (newPosition.x > WINDOW_WIDTH) { newPosition.x = 0; }
-
-		if (newPosition.y < 0) { newPosition.y = WINDOW_HEIGHT; }
-		else if (newPosition.y > WINDOW_HEIGHT) { newPosition.y = 0; }
-
+		Vector3 newPosition = owner.getPosition() + owner.getForward() * forwardSpeed * dt;
 		owner.setPosition(newPosition);
 	}
 }

@@ -1,4 +1,5 @@
 #pragma once
+#include "Mesh.h"
 #include "Shader.h"
 #include "Texture.h"
 
@@ -19,6 +20,7 @@ class Assets
 public:
 	static std::map<std::string, Texture> textures;
 	static std::map<std::string, Shader> shaders;
+	static std::map<std::string, Mesh> meshes;
 
 	// Loads a texture from file
 	static Texture loadTexture(IRenderer& renderer, const string& filename, const string& name);
@@ -39,6 +41,12 @@ public:
 	// Retrieves a stored texture
 	static Texture& getTexture(const std::string& name);
 
+	// Loads a mesh from file
+	static Mesh loadMesh(const string& filenameP, const string& name);
+
+	// Retrieves a stored mesh
+	static Mesh& getMesh(const std::string& name);
+
 	// Properly de-allocates all loaded resources
 	static void clear();
 
@@ -54,4 +62,6 @@ private:
 		const std::string& tesselationControlShaderFile = "",
 		const std::string& tesselationEvaluationShaderFile = "",
 		const std::string& geometryShaderFile = "");
+
+	static Mesh loadMeshFromFile(const string& filename);
 };
